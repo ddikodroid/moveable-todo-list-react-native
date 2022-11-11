@@ -24,6 +24,7 @@ const TodoScreen = () => {
         completed: false,
       },
     ]);
+    setTaskName('');
   };
 
   const onDeleteTask = ({id}: {id: ITodo['id']}) => {
