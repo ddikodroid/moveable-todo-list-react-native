@@ -30,6 +30,7 @@ export default TaskInput;
 
 const styles = StyleSheet.create({
   container: {
+    marginBottom: 12,
     flexDirection: 'row',
     marginHorizontal: 16,
   },
