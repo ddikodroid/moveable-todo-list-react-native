@@ -92,7 +92,7 @@ const TodoScreen = () => {
         onChangeText={text => setTaskName(text)}
         onAdd={onAddTask}
       />
-      <Text style={styles.counter}>Counter: {completedTask}</Text>
+      <Text style={styles.counter}>Completed: {completedTask}</Text>
       <FlatList data={todos} renderItem={renderTodoCard} style={styles.list} />
     </View>
   );
