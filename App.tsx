@@ -1,10 +1,11 @@
-import * as React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import React from 'react';
+import {SafeAreaView} from 'react-native';
+import {Todo} from './app/screens';
 
 const App = () => {
   return (
     <SafeAreaView>
-      <Text>movable-todo-app</Text>
+      <Todo />
     </SafeAreaView>
   );
 };
