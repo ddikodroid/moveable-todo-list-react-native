@@ -11,6 +11,7 @@ export interface ITodo {
 const TodoScreen = () => {
   const [taskName, setTaskName] = useState<string>('');
   const [todos, setTodos] = useState<ITodo[]>([]);
+  const [completedTask, setCompletedTask] = useState<number>(0);
 
   const onAddTask = () => {
     if (taskName === '') {
@@ -27,8 +28,14 @@ const TodoScreen = () => {
     setTaskName('');
   };
 
+  const countCompletedTask = (arr: ITodo[]) => {
+    const completed = arr.filter(todo => todo.completed === true);
+    setCompletedTask(completed.length);
+  };
+
   const onDeleteTask = ({id}: {id: ITodo['id']}) => {
     const filtered = todos.filter(todo => todo.id !== id);
+    countCompletedTask(filtered);
     setTodos(filtered);
   };
 
@@ -62,6 +69,7 @@ const TodoScreen = () => {
     const newTodos = todos.map(todo =>
       todo.id === id ? {...todo, completed: !todo.completed} : {...todo},
     );
+    countCompletedTask(newTodos);
     setTodos(newTodos);
   };
 
@@ -84,6 +92,7 @@ const TodoScreen = () => {
         onChangeText={text => setTaskName(text)}
         onAdd={onAddTask}
       />
+      <Text style={styles.counter}>Counter: {completedTask}</Text>
       <FlatList data={todos} renderItem={renderTodoCard} style={styles.list} />
     </View>
   );
@@ -101,6 +110,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     fontWeight: 'bold',
     alignSelf: 'center',
+  },
+  counter: {
+    fontSize: 15,
+    color: 'teal',
+    marginBottom: 12,
+    fontWeight: '500',
+    marginHorizontal: 16,
   },
   list: {
     marginHorizontal: 16,
